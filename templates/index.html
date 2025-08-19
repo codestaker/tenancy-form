@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Application Form</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="mainFormContainer">
+        <h1 class="form-title">Tenant Application Form</h1>
+        <p class="form-subtitle">Please fill out the form below to apply for tenancy.</p>
+
+        <div id="progress">Step 1 of 18</div>
+
+        <div class="step active">
+            <div class="question">What is your full name?</div>
+            <input type="text" placeholder="Enter your name" id="fullNameInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Please enter a valid phone number.</div>
+            <input type="tel" placeholder="Enter your phone number" id="phoneNumberInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">What is your email address?</div>
+            <input type="email" placeholder="example@example.com" id="emailInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Date of Birth</div>
+            <input type="date" id="dobInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Address</div>
+            <input type="text" placeholder="Street Address" id="addressInput" required>
+            <input type="text" placeholder="City" id="cityInput" required>
+            <input type="text" placeholder="State/Province" id="stateInput" required>
+            <input type="text" placeholder="Postal/Zip Code" id="zipInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Occupation</div>
+            <input type="text" placeholder="Enter your occupation" id="occupationInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Monthly Income</div>
+            <input type="text" placeholder="Enter your income" id="incomeInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Monthly Rent</div>
+            <input type="text" placeholder="Enter your rent" id="rentInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Are you Married?</div>
+            <div class="radio-group">
+                <label><input type="radio" name="married" value="yes" required> Yes</label>
+                <label><input type="radio" name="married" value="no"> No</label>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="question">Do you have any pets?</div>
+            <div class="radio-group">
+                <label><input type="radio" name="pets" value="yes" required> Yes</label>
+                <label><input type="radio" name="pets" value="no"> No</label>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="question">Do you have a car?</div>
+            <div class="radio-group">
+                <label><input type="radio" name="car" value="yes" required> Yes</label>
+                <label><input type="radio" name="car" value="no"> No</label>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="question">How soon do you want the keys and the documents?</div>
+            <input type="text" placeholder="e.g., Immediately, Next week" id="keysDateInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">When you like to start staying?</div>
+            <input type="text" placeholder="e.g., As soon as approved" id="stayDateInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">How long lease are you looking for?</div>
+            <input type="text" placeholder="e.g., 1 year, 6 months" id="leaseDurationInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">How soon do you intend moving in?</div>
+            <input type="text" placeholder="e.g., ASAP" id="moveInDateInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">How soon are you paying for the security deposit?</div>
+            <input type="text" placeholder="e.g., Immediately, Next week" id="securityDepositInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">How soon are you paying for the rent to receive the keys and the documents?</div>
+            <input type="text" placeholder="e.g., Immediately, Next week" id="rentPaymentInput" required>
+        </div>
+
+        <div class="step">
+            <div class="question">Would you be willing to pay the application fee now to get approved and have the house secured in your name immediately?</div>
+            <div class="radio-group">
+                <label><input type="radio" name="applicationFee" value="yes" required> Yes</label>
+                <label><input type="radio" name="applicationFee" value="no"> No</label>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="question">How would you like to pay the application fee?</div>
+            <select id="paymentMethodInput" required>
+                <option value="" disabled selected>Select a payment method</option>
+                <option value="chime">Chime</option>
+                <option value="zelle">Zelle</option>
+                <option value="apple_pay">Apple Pay</option>
+                <option value="bitcoin">Bitcoin</option>
+            </select>
+        </div>
+
+        <div class="step">
+            <div class="question">Please sign below to confirm your application</div>
+            <div id="signature-pad">
+                <canvas id="signatureCanvas" width="400" height="200"></canvas>
+                <button type="button" id="clearBtn">Clear Signature</button>
+            </div>
+        </div>
+
+        <div class="step" id="reviewStep">
+            <h2>Review your Application</h2>
+            <div id="reviewContent">
+                </div>
+            <p>By clicking "I Agree," you confirm that the information provided is accurate and truthful.</p>
+        </div>
+
+        <div class="navigation-buttons">
+            <button id="prevBtn" style="display: none;">Previous</button>
+            <button id="nextBtn">Next</button>
+            <button id="agreeBtn" style="display: none;">I Agree</button>
+        </div>
+    </div>
+
+    <div id="thankYouMessage" style="display: none;">
+        <h2>Thank you for your application!</h2>
+        <p>Your application has been submitted successfully. We will review it and get back to you shortly.</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
