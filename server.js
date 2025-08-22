@@ -21,6 +21,10 @@ app.get('/', (req, res) => {
 });
 
 
+app.get('/tenant.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'templates', 'tenant.html'));
+});
+
 app.get('/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'templates', 'index.html'));
 });
@@ -41,20 +45,6 @@ app.post('/submit', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Missing form data.' });
         }
 
-        let signatureUrl = '';
-        if (signature) {
-            const data = signature.replace(/^data:image\/png;base64,/, '');
-            const filename = `signature-${Date.now()}.png`;
-            const filepath = path.join(__dirname, 'templates', 'signatures', filename);
-
-            if (!fs.existsSync(path.dirname(filepath))) {
-                fs.mkdirSync(path.dirname(filepath), { recursive: true });
-            }
-
-            fs.writeFileSync(filepath, data, 'base64');
-            signatureUrl = `http://localhost:${PORT}/signatures/${filename}`;
-        }
-        
         // --- Capitalize the radio button answers ---
         const marriedAnswer = capitalizeFirstLetter(formData.married);
         const petsAnswer = capitalizeFirstLetter(formData.pets);

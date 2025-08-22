@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Agree Button Listener (Final Submission) ---
     agreeBtn.addEventListener('click', async () => {
+        collectAllFormData();
         mainFormContainer.innerHTML = '<h2>Submitting... Please wait.</h2>';
         
         try {

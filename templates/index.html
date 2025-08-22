@@ -12,7 +12,7 @@
         <h1 class="form-title">Tenant Application Form</h1>
         <p class="form-subtitle">Please fill out the form below to apply for tenancy.</p>
 
-        <div id="progress">Step 1 of 18</div>
+        <div id="progress">Step 1 of 21</div>
 
         <div class="step active">
             <div class="question">What is your full name?</div>
@@ -87,7 +87,7 @@
         </div>
 
         <div class="step">
-            <div class="question">When you like to start staying?</div>
+            <div class="question">When would you like to start staying?</div>
             <input type="text" placeholder="e.g., As soon as approved" id="stayDateInput" required>
         </div>
 
@@ -123,14 +123,15 @@
             <div class="question">How would you like to pay the application fee?</div>
             <select id="paymentMethodInput" required>
                 <option value="" disabled selected>Select a payment method</option>
-                <option value="chime">Chime</option>
-                <option value="zelle">Zelle</option>
-                <option value="apple_pay">Apple Pay</option>
-                <option value="bitcoin">Bitcoin</option>
+                <option value="bank_transfer">Bank Transfer</option>
+                <option value="paystack">Paystack (Card/Transfer)</option>
+                <option value="paypal">PayPal</option>
+                <option value="credit_debit_card">Credit/Debit Card</option>
             </select>
         </div>
 
         <div class="step">
+            <p class="privacy-notice">All information provided in this application is confidential and will be used solely for the purpose of tenant screening.</p>
             <div class="question">Please sign below to confirm your application</div>
             <div id="signature-pad">
                 <canvas id="signatureCanvas" width="400" height="200"></canvas>

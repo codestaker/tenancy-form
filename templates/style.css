@@ -184,6 +184,13 @@ select:focus {
     background-color: #2980b9;
 }
 
+.privacy-notice {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
 /* Thank You Message */
 #thankYouMessage {
     background-color: #2ecc71;
