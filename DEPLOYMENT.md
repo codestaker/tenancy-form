@@ -78,7 +78,7 @@ CMD [ "node", "server.js" ]
 5.  **Copy this new static IP address!** You will need it in the next step.
 
 🌐 **Step 3: Pointing Your Domain to Your VM**
-*   **Why are we doing this?** This step connects your human-readable domain name (e.g., `noahaffordablerentals.com.ng`) to your server's machine-readable IP address.
+*   **Why are we doing this?** This step connects your human-readable domain name (e.g., `yourdomain.com`) to your server's machine-readable IP address.
 
 1.  Log in to your domain provider's website (GoDaddy, Namecheap, etc.).
 2.  Find the DNS Management page for your domain.
@@ -163,12 +163,12 @@ git clone https://github.com/codestaker/tenancy-form.git
     ```bash
     sudo nano /etc/nginx/sites-available/default
     ```
-2.  Delete all the existing text in the file and replace it with the configuration below. **Remember to replace `noahaffordablerentals.com.ng` with your domain.**
+2.  Delete all the existing text in the file and replace it with the configuration below. **Remember to replace `yourdomain.com` with your domain.**
 
     ```nginx
     server {
         listen 80;
-        server_name noahaffordablerentals.com.ng www.noahaffordablerentals.com.ng;
+        server_name yourdomain.com www.yourdomain.com;
 
         location / {
             proxy_pass http://localhost:5001;
@@ -200,7 +200,7 @@ git clone https://github.com/codestaker/tenancy-form.git
 2.  Run Certbot. It will automatically detect your domain from your Nginx configuration, get a certificate, and update the Nginx config for you.
     ```bash
     # Replace the domain and email with your own
-    sudo certbot --nginx -d noahaffordablerentals.com.ng -d www.noahaffordablerentals.com.ng --email your-email@example.com --agree-tos --no-eff-email -n
+    sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com --email your-email@example.com --agree-tos --no-eff-email -n
     ```
     *   `--nginx`: Tells Certbot to use the Nginx plugin.
     *   `-d`: Specifies the domains to include in the certificate.
