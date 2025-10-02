@@ -54,9 +54,9 @@ app.post('/submit', async (req, res) => {
         
         // --- Email sending logic ---
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
+            host: 'mail.noahaffordablerentals.com.ng',
+            port: 587,
+            secure: false, // true for 465, false for other ports
             auth: {
                 user: process.env.SENDER_EMAIL,
                 pass: process.env.APP_PASSWORD
