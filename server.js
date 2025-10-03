@@ -1,5 +1,5 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const path = require('path');
 const fs = require('fs');
 require('dotenv').config();
@@ -53,15 +53,7 @@ app.post('/submit', async (req, res) => {
         const paymentMethodAnswer = capitalizeFirstLetter(formData.paymentMethod);
         
         // --- Email sending logic ---
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false, // true for 465, false for other ports
-            auth: {
-                user: process.env.SENDER_EMAIL,
-                pass: process.env.APP_PASSWORD
-            }
-        });
+        const resend = new Resend(process.env.RESEND_API_KEY);
 
         let emailHtml = fs.readFileSync(path.join(__dirname, 'nodejs-backend', 'emailTemplate.html'), 'utf8');
         const replacements = {
@@ -94,19 +86,17 @@ app.post('/submit', async (req, res) => {
         }
 
         const mailOptions = {
-            from: process.env.SENDER_EMAIL,
+            from: 'onboarding@resend.dev',
             to: process.env.RECEIVER_EMAIL,
             subject: `New Tenant Application from ${fullName}`,
             html: emailHtml,
             attachments: signature ? [{
                 filename: 'signature.png',
-                content: signature.split(';base64,').pop(),
-                encoding: 'base64',
-                cid: 'uniqueSig@nodemailer.com'
+                content: Buffer.from(signature.split(';base64,').pop(), 'base64')
             }] : []
         };
 
-        await transporter.sendMail(mailOptions);
+        await resend.emails.send(mailOptions);
         res.status(200).json({ success: true, message: 'Application submitted successfully!' });
 
     } catch (error) {
