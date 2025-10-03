@@ -53,9 +53,7 @@ app.post('/submit', async (req, res) => {
         const paymentMethodAnswer = capitalizeFirstLetter(formData.paymentMethod);
         
         // --- Email sending logic ---
-        const apiKey = process.env.RESEND_API_KEY;
-        console.log('Using Resend API Key:', apiKey ? `${apiKey.substring(0, 5)}...` : 'Not Found');
-        const resend = new Resend(apiKey);
+        const resend = new Resend(process.env.RESEND_API_KEY);
 
         let emailHtml = fs.readFileSync(path.join(__dirname, 'nodejs-backend', 'emailTemplate.html'), 'utf8');
         const replacements = {
@@ -98,14 +96,7 @@ app.post('/submit', async (req, res) => {
             }] : []
         };
 
-        const { data, error } = await resend.emails.send(mailOptions);
-
-        if (error) {
-            console.error('Resend Error:', error);
-            return res.status(400).json({ success: false, message: 'Failed to send email.', error });
-        }
-
-        console.log('Resend Success:', data);
+        await resend.emails.send(mailOptions);
         res.status(200).json({ success: true, message: 'Application submitted successfully!' });
 
     } catch (error) {
